@@ -114,9 +114,8 @@ public class Main {
     static int nombreLivre = 0;
 
     public static void main(String[] args) {
-        ajouterLivre(catalogue, new Book("Le Petit Prince", "Saint-Exupéry", "978-2-07-061275-8", true));
-        ajouterLivre(catalogue, new Book("1984", "George Orwell", "978-2-07-036822-6", true));
-
+        ajouterLivre(catalogue, new Book("Le Petit Prince", "Saint-Exupéry", "978-2-07-061275-8"));
+        ajouterLivre(catalogue, new Book("1984", "George Orwell", "978-2-07-036822-6"));
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
 
@@ -150,7 +149,7 @@ public class Main {
                     if (rechercherParIsbn(catalogue, isbn) != null) {
                         System.out.println("Erreur : un livre avec cet ISBN existe déjà !");
                     } else {
-                        ajouterLivre(catalogue, new Book(titre, auteur, isbn, true));
+                        ajouterLivre(catalogue, new Book(titre, auteur, isbn));
                     }
                     break;
 

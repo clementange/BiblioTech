@@ -37,41 +37,41 @@ public class Book {
 }*/
 
 package main.java.com.bibliotech.model;
-public class Book {
-    private String title;
+public class Book extends LibraryItem {
     private String author;
-    private String isbn;
-    private boolean available;
 
-    public Book(String title, String author, String isbn, boolean available) {
-        this.title = title;
+    public Book(String title, String author, String isbn) {
+        super(title,isbn);
         this.author = author;
-        this.isbn = isbn;
-        this.available = available;
-    }
 
-    public String getTitle() {
-        return title;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public String getIsbn(){
+        return getId();
     }
 
-    public boolean isAvailable() {
-        return available;
+    @Override
+    public void borrow(Member member){
+        if(!isAvailable()){
+            throw new IllegalArgumentException("Livre déjà emprunté");
+        }
+        else {
+            available = false;
+        }
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    @Override
+    public String describe() {
+        return title + " - " + author;
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] - %s (%s)", isbn, title, author);
+
+        return describe() + " [" + getId() + "]";
     }
 }
